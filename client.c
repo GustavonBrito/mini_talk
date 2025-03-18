@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/16 23:34:46 by gustavo-lin       #+#    #+#             */
-/*   Updated: 2025/03/18 17:48:05 by codespace        ###   ########.fr       */
+/*   Updated: 2025/03/18 18:18:06 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,16 +26,17 @@ void post_datas(int pid, char *message)
         while(bit_per_bit >= 0)
         {
             if (message[i] >> bit_per_bit & 1)
-                printf("%d", 1);
-                //kill(pid, SIGUSR1);
+            {
+                kill(pid, SIGUSR1);
+            }
             else
-                printf("%d", 0);    
-                //kill(pid, SIGUSR2);    
+            { 
+                kill(pid, SIGUSR2);    
+            }
             bit_per_bit--;
             usleep(100);
         }
         i++;
-        write(1, "\n", 1);
     }
 }
 

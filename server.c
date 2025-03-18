@@ -6,24 +6,36 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/16 23:34:41 by gustavo-lin       #+#    #+#             */
-/*   Updated: 2025/03/18 17:33:52 by codespace        ###   ########.fr       */
+/*   Updated: 2025/03/18 19:51:03 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
+#include <stdlib.h>
+#include <stdio.h>
 
 void handle_signal(int sig)
 {
+	static int bit_count = 0;
+
+	static char byte_to_print[8];
 	if (sig == 10)
-		write(1, "1", 1);
+		byte_to_print[bit_count] = '1';
 	else
-		write(1, "0", 1);	
+		byte_to_print[bit_count] = '0';
+	bit_count++;
+	if (bit_count == 8)
+	{
+		write(1, "\n", 1);
+		byte_to_print[bit_count - 1] = '\0';
+		bit_count = 0;
+	}
 }
 
 int main(void)
 {
 	int pid;
-
+	
 	pid = 0;
 	pid = getpid();
 	printf("\033[94mPID\033[0m \033[96m->\033[0m %d\n", pid);
@@ -32,6 +44,5 @@ int main(void)
 	signal(SIGUSR2, handle_signal);
 	while (1)
 		pause();
-	write(1, "\n", 1);
 	return (0);
 }

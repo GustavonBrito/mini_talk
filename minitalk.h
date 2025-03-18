@@ -1,33 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   server.c                                           :+:      :+:    :+:   */
+/*   minitalk.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/16 23:34:41 by gustavo-lin       #+#    #+#             */
-/*   Updated: 2025/03/18 13:15:33 by codespace        ###   ########.fr       */
+/*   Created: 2025/03/18 12:48:26 by codespace         #+#    #+#             */
+/*   Updated: 2025/03/18 12:51:17 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk.h"
+#ifndef MINITALK_H
+# define MINITALK_H
 
-void handle_sigusr1(int sig)
-{
-	write(1, "Sinal recebido\n", 15);
-}
+// # include "../libft/inc/libft.h"
+// # include "../libft/inc/ft_printf.h"
+# include <signal.h>
+# include <stdio.h>
+# include <unistd.h>
 
-int main(void)
-{
-	int pid;
-
-	pid = 0;
-	pid = getpid();
-	printf("\033[94mPID\033[0m \033[96m->\033[0m %d\n", pid);
-	printf("\033[90mWaiting for a message...\033[0m\n");
-	signal(SIGUSR1, handle_sigusr1);
-	signal(SIGUSR2, handle_sigusr1);
-	while (1)
-		pause();
-	return (0);
-}
+#endif

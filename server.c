@@ -11,14 +11,14 @@
 /* ************************************************************************** */
 
 #include "minitalk.h"
-#include <stdlib.h>
-#include <stdio.h>
 
 void handle_signal(int sig)
 {
+	int i;
+	unsigned char g;
 	static int bit_count = 0;
-
 	static char byte_to_print[8];
+	
 	if (sig == 10)
 		byte_to_print[bit_count] = '1';
 	else
@@ -26,9 +26,16 @@ void handle_signal(int sig)
 	bit_count++;
 	if (bit_count == 8)
 	{
-		write(1, "\n", 1);
-		byte_to_print[bit_count - 1] = '\0';
+		byte_to_print[bit_count] = '\0';
+		i = 0;
+		while(i < 8)
+		{
+			g = (g << 1) | (byte_to_print[i] - '0');
+			i++;
+		}
+		write(1, &g, 1);
 		bit_count = 0;
+		g = 0;
 	}
 }
 

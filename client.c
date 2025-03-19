@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "minitalk.h"
-#include <stdlib.h>
 
 void post_datas(int pid, char *message)
 {

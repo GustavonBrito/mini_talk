@@ -6,11 +6,11 @@
 /*   By: gustavo-linux <gustavo-linux@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/16 23:34:46 by gustavo-lin       #+#    #+#             */
-/*   Updated: 2025/03/19 15:50:37 by gustavo-lin      ###   ########.fr       */
+/*   Updated: 2025/03/20 01:23:46 by gustavo-lin      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk.h"
+#include "libft/headers/minitalk.h"
 
 void	post_datas(int pid, char *message)
 {
@@ -44,9 +44,9 @@ int	main(int argc, char **argv)
 {
 	if (argc != 3)
 	{
-		printf("\033[31mInsert 3 args: ./client <PID> <Message>\033[31m\n");
+		ft_printf("\033[31mInsert 3 args: ./client <PID> <Message>\033[31m\n");
 		return (-1);
 	}
-	post_datas(atoi(argv[1]), argv[2]);
+	post_datas(ft_atoi(argv[1]), argv[2]);
 	return (0);
 }

@@ -15,7 +15,7 @@
 void	handle_signal(int sig, siginfo_t *info, void *context)
 {
 	int				i;
-	unsigned char	g = 0;
+	int				g = 0;
 	static int		bit_count = 0;
 	static char		byte_to_print[8];
 	(void) context;
@@ -35,15 +35,10 @@ void	handle_signal(int sig, siginfo_t *info, void *context)
 			i++;
 		}
 		if (g == 0)
-		{
 			ft_printf("\n");
-			kill(info->si_pid, SIGUSR1);
-		}
 		else
-		{
-			write(1, &g, 1);
-			g = 0;
-		}
+			ft_printf("%c", g);
+		g = 0;
 		bit_count = 0;
 	}
 	kill(info->si_pid, SIGUSR1);

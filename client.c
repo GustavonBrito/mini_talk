@@ -22,21 +22,6 @@ void	handle_info_sent(int pid)
 	}
 }
 
-void ft_send_eof(int pid)
-{
-	int i;
-
-	i = 0;
-	while (i <= 7)
-	{
-		kill(pid, SIGUSR1);
-		i++;
-		while (!server_confirm)
-			;
-		server_confirm = 0;
-	}
-}
-
 void	post_datas(int pid, char *message)
 {
 	int	bit_per_bit;
@@ -62,7 +47,6 @@ void	post_datas(int pid, char *message)
 			break;	
 		i++;
 	}
-	ft_send_eof(pid);
 }
 
 int	main(int argc, char **argv)

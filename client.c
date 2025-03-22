@@ -6,19 +6,19 @@
 /*   By: gustavo-linux <gustavo-linux@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/16 23:34:46 by gustavo-lin       #+#    #+#             */
-/*   Updated: 2025/03/21 01:48:11 by gustavo-lin      ###   ########.fr       */
+/*   Updated: 2025/03/21 22:33:14 by gustavo-lin      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/headers/minitalk.h"
 
-int server_confirm = 0;
+int		g_server_confirm = 0;
 
 void	handle_info_sent(int pid)
 {
 	if (pid == SIGUSR1)
 	{
-		server_confirm = 1;
+		g_server_confirm = 1;
 	}
 }
 
@@ -39,12 +39,12 @@ void	post_datas(int pid, char *message)
 			else
 				kill(pid, SIGUSR2);
 			bit_per_bit--;
-			while (!server_confirm)
+			while (!g_server_confirm)
 				;
-			server_confirm = 0;
+			g_server_confirm = 0;
 		}
 		if (message[i] == '\0')
-			break;	
+			break ;
 		i++;
 	}
 }

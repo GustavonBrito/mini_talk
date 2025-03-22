@@ -16,7 +16,7 @@ void	print_content(char *byte_to_print)
 {
 	int	g;
 	int	i;
-	
+
 	g = 0;
 	i = 0;
 	while (i < 8)
@@ -36,16 +36,16 @@ void	print_content(char *byte_to_print)
 
 void	handle_signal(int sig, siginfo_t *info, void *context)
 {
-	static int		bit_count = 0;
-	static char		byte_to_print[8];
-	(void) context;
-	
+	static int	bit_count = 0;
+	static char	byte_to_print[8];
+
+	(void)context;
 	if (sig == 10)
-	byte_to_print[bit_count] = '1';
+		byte_to_print[bit_count] = '1';
 	else
-	byte_to_print[bit_count] = '0';
+		byte_to_print[bit_count] = '0';
 	bit_count++;
-	if(bit_count == 8)
+	if (bit_count == 8)
 	{
 		byte_to_print[bit_count] = '\0';
 		print_content(byte_to_print);
@@ -56,8 +56,8 @@ void	handle_signal(int sig, siginfo_t *info, void *context)
 
 int	main(void)
 {
-	struct sigaction sa;
-	int	pid;
+	struct sigaction	sa;
+	int					pid;
 
 	pid = 0;
 	pid = getpid();

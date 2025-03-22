@@ -27,7 +27,6 @@ server: $(LIBFT)
 
 clean:
 	@make -C $(LIBFT_DIR) clean
-	rm -f $(OBJS)
 
 fclean:
 	@make -C $(LIBFT_DIR) fclean

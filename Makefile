@@ -1,4 +1,4 @@
-CC = gcc
+CC = cc
 
 LIBFT_DIR = libft
 
